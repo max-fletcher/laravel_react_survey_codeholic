@@ -18,7 +18,6 @@ function DefaultLayout() {
 
    const { currentUser, userToken } = userStateContext() // GET currentUser FROM ContextProvider BY DESTRUCTURING IT
 
-   
    if(!userToken){
       // THE REASON WE ARE NOT USING useNavigate IS BECAUSE IT CAN BE USED ONLY INSIDE FUNCTIONS INCLUDING useEffect AND NOT OUTSIDE OF IT
       return <Navigate to='login' />
