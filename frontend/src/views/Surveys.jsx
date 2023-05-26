@@ -1,21 +1,25 @@
 import PageComponent from "../components/PageComponent"
+import { useStateContext } from "../contexts/ContextProvider"
+import SurveyListItem from "../components/SurveyListItem"
 
 const Surveys = () => {
+
+   const { surveys } = useStateContext()
+   console.log(surveys);
+
+   const onDeleteClick = () => {
+      console.log('On Delete Click Bruh');
+   }
+
    return (
       <>
          <PageComponent title='Surveys'>
-            Surveys Content
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
+               {surveys.map(survey => (
+                  <SurveyListItem survey={survey} key={survey.id} onDeleteClick={onDeleteClick} />
+               ))}
+            </div>
          </PageComponent>
-         {/* <header className="bg-white shadow">
-            <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-               <h1 className="text-3xl font-bold tracking-tight text-gray-900">Surveys</h1>
-            </div>
-         </header>
-         <main>
-            <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
-               Surveys Content
-            </div>
-         </main> */}
       </>
    )
 }

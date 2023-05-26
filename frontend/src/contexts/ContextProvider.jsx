@@ -196,7 +196,8 @@ export const ContextProvider = ({ children }) => {
          currentUser,
          setCurrentUser,
          userToken,
-         setUserToken
+         setUserToken,
+         surveys,
       }}>
          {children}
       </StateContext.Provider>
@@ -204,4 +205,4 @@ export const ContextProvider = ({ children }) => {
 }
 
 // THIS IS A SHORTCUT INSTEAD OF DEFINING THIS INSIDE EACH COMPONENT WHERE WE WISH TO USE THIS CONTEXT. JUST USE DESTRUCTURING TO GET WHAT IS NEEDED.
-export const userStateContext = () => useContext(StateContext)
+export const useStateContext = () => useContext(StateContext)

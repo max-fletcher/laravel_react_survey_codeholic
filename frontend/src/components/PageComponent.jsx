@@ -1,6 +1,11 @@
-
-//PASSING PROPS TO THIS COMPONENT. buttons WILL HAVE BLANK AS DEFAULT IF NO VALUE IS PASSED
+// PASSING PROPS TO THIS COMPONENT. buttons WILL HAVE BLANK AS DEFAULT IF NO VALUE IS PASSED
+// CHILDREN IS A SPECIAL NAME FOR WHEN YOU WANT TO PLACE CONTENT IN THE MIDDLE OF CUSTOM COMPONENT RENDERED IN A SPECIFIC SPOT
+// HENCE, "<h1> Surveys Content </h1>" <PageComponent title='Surveys'> <h1> Surveys Content </h1> </PageComponent> IN Surveys.js
+// WILL BE RENDERED HERE IN PLACE OF CHILDREN
 const PageComponent = ({ title, buttons = "", children }) => {
+
+   console.log(children);
+
    return (
       <>
          <header className="bg-white shadow">
