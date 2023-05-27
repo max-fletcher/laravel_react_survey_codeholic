@@ -1,7 +1,9 @@
 import { Link } from "react-router-dom"
 
 // DEFAAULT VALUES FOR TButton COMPONENT
-const TButton = ({ color='indigo', to='', circle=false, href='', link='', target='_blank', children }) => {
+const TButton = ({ color='indigo', to='', circle=false, href='', link='', target='_blank', onClick = () => {}, children }) => {
+
+   // console.log(to, href);
 
    let classes = [
       "flex", "whitespace-nowrap", "text-sm", "border", "border-2", "border-transparent"
@@ -40,7 +42,7 @@ const TButton = ({ color='indigo', to='', circle=false, href='', link='', target
       classes = [...classes, "h-8", "w-8", "items-center", "justify-center", "rounded-full", "text-sm"]
    }
    else{
-      classes = [...classes, "p-0", "py-2", "px-4", "rounded-md"]
+      classes = [...classes, "py-2", "px-4", "rounded-md"]
    }
 
    return (
@@ -50,7 +52,7 @@ const TButton = ({ color='indigo', to='', circle=false, href='', link='', target
          {/* ELSE IF to EXISTS, SEND BACK A Link BUTTON WITH THE to PROPERTY AND WITH CLASSES JOINED TO FORM A STRING SEPARATED BY SINGLE SPACE */}
          {to && (<Link to={to} className={classes.join(" ")}>{children}</Link>)}
          {/* ELSE IF NEITHER href NOR to EXISTS, SEND BACK A NORMAL BUTTON WITH CLASSES JOINED TO FORM A STRING SEPARATED BY SINGLE SPACE */}
-         {!to && (<button className={classes.join(" ")}>{children}</button>)}
+         {!to && !href && (<button onClick={onClick} className={classes.join(" ")}>{children}</button>)}
       </>
    )
 }
