@@ -25,8 +25,15 @@ function Signup() {
       .then(({data}) => { // DESTRUCTURING AND GETTING THE DATA ONLY NOT ANYTHING ELSE e.g HEADERS
          console.log(data);
       })
-      .catch((error) => { // DESTRUCTURING AND GETTING THE RESPONSE ONLY NOT ANYTHING ELSE e.g HEADERS
+      .catch((error) => {
          console.log(error);
+         console.error(error);
+         if(error.response){
+            // reduce JUST APPENDS THE PREVIOUS ELEMENT WITH THE ALREADY EXISTING ARRAY OF ELEMENTS SO IT CONSTRUCTS AN ARRAY
+            const finalErrors = Object.values(error.response.data.errors).reduce((accum, next) => [...accum, ...next], [])
+            console.log(finalErrors)
+            setError({__html: finalErrors.join('<br>')})
+         }
       })
    }
 
@@ -37,6 +44,12 @@ function Signup() {
             </h2>
    
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+
+               {error.__html && (
+                  <div className="bg-red-500 rounded py-3 px-3 mb-5 text-white" dangerouslySetInnerHTML={error}>
+                  </div>
+               )}
+
                <form onSubmit={onSubmit} className="space-y-6">
                   <div>
                      <label htmlFor="full_name" className="block text-sm font-medium leading-6 text-gray-900">
@@ -49,6 +62,8 @@ function Signup() {
                            type="name"
                            autoComplete="name"
                            required
+                           value={fullName}
+                           onChange={event => setFullName(event.target.value)}
                            placeholder="Full Name"
                            className="block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
@@ -66,6 +81,8 @@ function Signup() {
                            type="email"
                            autoComplete="email"
                            required
+                           value={email}
+                           onChange={event => setEmail(event.target.value)}
                            placeholder="Email Address"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
@@ -90,6 +107,8 @@ function Signup() {
                            type="password"
                            autoComplete="off"
                            required
+                           value={password}
+                           onChange={event => setPassword(event.target.value)}
                            placeholder="Enter Password"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
@@ -109,6 +128,8 @@ function Signup() {
                            type="password"
                            autoComplete="off"
                            required
+                           value={passwordConfirmation}
+                           onChange={event => setPasswordConfirmation(event.target.value)}
                            placeholder="Password Confirmation"
                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                         />
@@ -137,4 +158,3 @@ function Signup() {
    }
    
    export default Signup
-   
