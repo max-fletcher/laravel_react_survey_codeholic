@@ -1,9 +1,11 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
 import axiosClient from "../axios"
+import { useStateContext } from "../contexts/ContextProvider"
 
 function Signup() {
 
+   const {setCurrentUser, setUserToken} = useStateContext()
    const [fullName, setFullName] = useState('')
    const [email, setEmail] = useState('')
    const [password, setPassword] = useState('')
@@ -24,6 +26,10 @@ function Signup() {
       })
       .then(({data}) => { // DESTRUCTURING AND GETTING THE DATA ONLY NOT ANYTHING ELSE e.g HEADERS
          console.log(data);
+         setCurrentUser(data.user)
+         setUserToken(data.token)
+         // THE APPLICATION WILL AUTOMATICALLY REDIRECT USER TO DASHBOARD BECAUSE OF THE LOGIC IN GuestLayout.jsx*(i.e if(userToken){ return <Navigate to='/' /> })
+         // CONTEXT BEHAVES LIKE STATE SO UPDATING THE userToken CAUSES THE COMPONENT TO RE-RENDER AND HENCE THIS BEHAVIOUR
       })
       .catch((error) => {
          console.log(error);
