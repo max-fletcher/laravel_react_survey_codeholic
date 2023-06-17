@@ -12,7 +12,7 @@ axiosClient.interceptors.request.use((config) => { // CONFIG CAN BE CONSIDERED T
    return config
 })
 
-axiosClient.interceptors.response.use((response) => { 
+axiosClient.interceptors.response.use((response) => {
       return response
    }, 
    (error) => {
