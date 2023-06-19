@@ -4,6 +4,7 @@ import { Bars3Icon, XMarkIcon, UserIcon } from '@heroicons/react/24/outline'
 import { NavLink, Outlet } from 'react-router-dom'
 import { useStateContext } from '../contexts/ContextProvider'
 import { Navigate } from 'react-router-dom'
+import axiosClient from '../axios'
 
 const navigation = [
    { name: 'Dashboard', to: '/'},
@@ -16,7 +17,7 @@ function classNames(...classes) {
 
 function DefaultLayout() {
 
-   const { currentUser, userToken } = useStateContext() // GET currentUser FROM ContextProvider BY DESTRUCTURING IT
+   const { currentUser, userToken, setCurrentUser, setUserToken } = useStateContext() // GET currentUser FROM ContextProvider BY DESTRUCTURING IT
 
    if(!userToken){
       // THE REASON WE ARE NOT USING useNavigate IS BECAUSE IT CAN BE USED ONLY INSIDE FUNCTIONS INCLUDING useEffect AND NOT OUTSIDE OF IT
@@ -26,6 +27,11 @@ function DefaultLayout() {
    const logout = (event) => {
       event.preventDefault
       console.log("Logout");
+      axiosClient.post('/logout')
+      .then(() => {
+         setCurrentUser({})
+         setUserToken(null)
+      })
    }
 
    return (
