@@ -11,7 +11,11 @@ class UpdateSurveyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        $survey = $this->route('survey'); // WILL GIVE YOU THE SURVEY MODEL IF IT IS USING ROUTE MODEL BINDING IF MODEL NAME IS 'survey'
+        if($this->user()->id !== $survey->user_id){ // CHECK IF THIS USER MADE THIS SURVEY. IF YES, ALLOW. ELSE, DISALLOW.
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -22,7 +26,13 @@ class UpdateSurveyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:1000',
+            'image' => 'nullable|string',
+            'user_id' => 'exists:users,id',
+            'status' => 'required|boolean',
+            'description' => 'nullable|string',
+            'expire_date' => 'nullable|date|after:today',
+            'questions' => 'array',
         ];
     }
 }
