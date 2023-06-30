@@ -22,6 +22,7 @@ function Login() {
       })
       .then(({data}) => { // DESTRUCTURING AND GETTING THE DATA ONLY NOT ANYTHING ELSE e.g HEADERS
          console.log(data);
+         console.log(data);
          setCurrentUser(data.user)
          setUserToken(data.token)
          // THE APPLICATION WILL AUTOMATICALLY REDIRECT USER TO DASHBOARD BECAUSE OF THE LOGIC IN GuestLayout.jsx*(i.e if(userToken){ return <Navigate to='/' /> })

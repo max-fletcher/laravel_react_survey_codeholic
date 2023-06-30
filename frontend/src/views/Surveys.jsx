@@ -16,12 +16,12 @@ const Surveys = () => {
    return (
       <>
          {/* PASSING JSX INTO buttons PROP */}
-         <PageComponent title='Surveys' buttons={ () => (
+         <PageComponent title='Surveys' buttons={
             <TButton color="green" to="/surveys/create">
                <PlusCircleIcon className="h-6 w-6 mr-2"/>
                Create New
             </TButton>
-         )}>
+         }>
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
                {surveys.map(survey => (
                   <SurveyListItem survey={survey} key={survey.id} onDeleteClick={onDeleteClick} />

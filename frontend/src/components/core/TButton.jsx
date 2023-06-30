@@ -21,6 +21,7 @@ const TButton = ({ color='indigo', to='', circle=false, href='', link='', target
             break
          case "red":
             classes = [...classes, "text-red-500", "focus:border-red-500"]
+            break
       }
    }
    // IF BUTTON IS NOT A LINK TYPE BUTTON
@@ -35,6 +36,10 @@ const TButton = ({ color='indigo', to='', circle=false, href='', link='', target
             break
          case "red":
             classes = [...classes, "bg-red-600", "hover:border-red-700", "focus:ring-red-500"]
+            break
+         case "green":
+            classes = [...classes, "bg-emerald-500", "hover:bg-emerald-600", "focus:ring-emerald-400"]
+            break
       }
    }
 

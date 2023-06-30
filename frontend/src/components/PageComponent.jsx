@@ -4,8 +4,6 @@
 // WILL BE RENDERED HERE IN PLACE OF CHILDREN
 const PageComponent = ({ title, buttons = "", children }) => {
 
-   console.log(children);
-
    return (
       <>
          <header className="bg-white shadow">
