@@ -23,8 +23,9 @@ const SurveyView = () => {
       axiosClient.post('/survey', {
          title: 'Lorem Ipsum',
          description: 'Test Desc',
-         expire_date: '11/24/2022',
-         status: true
+         expire_date: '2024/11/23 00:00:00',
+         status: true,
+         questions: []
       })
    };
 

@@ -49,6 +49,8 @@ class SurveyController extends Controller
             $question['survey_id'] = $survey->id;
             $this->createQuestion($question);
         }
+
+        return new SurveyResource($survey);
     }
 
     /**
